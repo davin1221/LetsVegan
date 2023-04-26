@@ -7,7 +7,9 @@
 <c:choose>
     <c:when test = "${empty sessionScope.loginMember}">
     <div>
-     <img src="${contextPath}/resources/img/logo.png" alt="">
+    	<a href="${contextPath}/index.jsp">
+    		 <img src="${contextPath}/resources/img/logo.png" alt="로고">
+    	 </a>
     </div>
 
     <div>
@@ -20,14 +22,14 @@
          
          <div class="loginWrap">
              <div class="loginLogoArea">
-                 <img src="${contextPath}/resources/img/logo.png" alt="">
+                 <img src="${contextPath}/resources/img/logo.png" alt"로고">
              </div>
 
              <div class="login-area">
 
                  <form action="member/login" method = "POST" name="loginForm" onsubmit = "loginInvalidate()">
                      <label>Email Address</label>
-                     <input type="text" id ="loginID" name ="loinID">
+                     <input type="text" id ="loginID" name ="loginID">
                      <label>Password</label>
                      <input type="password" id = "loginPw" name = "loginPw">
                      <span id="mail-Msg">메일 입력 관련 메세지</span>
@@ -58,11 +60,13 @@
 <c:otherwise>
 
     <div>
-     <img src="${contextPath}/resources/img/logo.png" alt="">
+         <a href="${contextPath}/index.jsp">
+    		 <img src="${contextPath}/resources/img/logo.png" alt="로고">
+    	 </a>
     </div>
 
     <div class="headerProfile">
-     <span name="nickName" id="nickName">닉네임</span>
+     <span name="nickName" id="nickName">${loginMember.memberNick}</span>
      <button type="button" onclick="openNav()" id="profileBtn"><img src="${contextPath}/resources/img/defaultUser.png" alt=""></button>
     </div>
 
@@ -73,7 +77,7 @@
          <div class="profileWrap">
              <div class="profileArea">
                  <img src="${contextPath}/resources/img/defaultUser.png" alt="">
-                 <span name="nickName">닉네임</span>
+                 <span name="nickName">${loginMember.memberNick}</span>
              </div>
 
              <ul class="infoList">
@@ -87,7 +91,7 @@
                          <i class="fa-regular fa-comment"></i>내가 작성한 리뷰
                      </li>
                  </a>
-                 <a href="">
+                 <a href="${contextPath}/member/wishList">
                      <li>
                          <i class="fa-regular fa-heart"></i>찜한 목록
                      </li>
