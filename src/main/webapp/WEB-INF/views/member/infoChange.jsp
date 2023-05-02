@@ -17,79 +17,113 @@
     
     <jsp:include page ="/WEB-INF/views/common/header.jsp"/>
 
-    <main>
-
- 	<!-- 정보 메뉴 -->
-    <section class="info-side container">
-        <ul>
-            <li><a href="">정보변경</a></li>
-            <li><a href="">비밀번호변경</a></li>
-            <li><a href="">회원탈퇴</a></li>
-        </ul>
-    </section>
-
-     <!-- 정보 메뉴 끝 -->
-     
-        <section class="ChangeInfo-area container">
-
-
-            <div class="myImg-area">
-                <img src="/img/defaultUser.png" alt="">
-                <button type="button" id="imgSelectBtn"><i class="fa-solid fa-camera"></i></button>
-            </div>
-
-            <form action="" name="info-form">
-
-                <label for="nickName">닉네임</label>
-                <div>
-                    <input type="text" id="nickName">
-                </div>
-
-
-                <label for="tel">전화번호</label>
-                <div>
-                    <input type="number" id="tel">
-                </div>
-
-
-                <label for="birth">생일</label>
-                <div class="birth-area">  
-                    <input type="number" max="2023" min="1900" placeholder="년">
-                    <input type="number" max="12" min="1" placeholder="월">
-                    <input type="number" max="31" min="1" placeholder="일">
-                </div>
-
-
-                <label for="addr">주소</label>
-                <div class="addr-area">
-                    <input type="text" id="postInput">
-                    <button id="postBtn">우편번호</button>
-                </div>
-                <div class="addr-area">
-                    <input type="text">
-                </div>
-                <div class="addr-area">
-                    <input type="text">
-                </div>
-
-                <button id="saveBtn">변경하기</button>
-
-
-
-            </form>
+	    <main>
+        <!-- 정보 메뉴 -->
+        <section class="info-menu container">
+            <ul>
+                <li><a href="${contextPath}/member/infoChange">정보변경</a></li>
+                <li><a href="${contextPath}/member/pwChange">비밀번호변경</a></li>
+                <li><a href="${contextPath}/member/secession">회원탈퇴</a></li>
+            </ul>
         </section>
 
 
+            <!-- 정보 변경 -->
+            <section class="ChangeInfo-area container">
 
+                <div class="myImg-area">
+                    
+                    <c:if test="${empty loginMember.profileImage}">
+                        <img src="${contextPath}/resources/img/profileImg/defaultUser.png" alt="프로필 이미지">
+                    </c:if> 
+                   
+                    <c:if test="${!empty loginMember.profileImage}">
+                        <img src="${contextPath}/${loginMember.profileImage}" alt="프로필 이미지">
+                    </c:if> 
+                    
+                    <button type="button" id="info_img_select_btn"><i class="fa-solid fa-camera"></i></button>
+                </div>
+
+                <!-- 사진 변경 모달 창 -->
+                <div class="info_img_modal">
+                    <div class="info_img_modal_content">
+                        <button id="info_modal_close">&times;</button>
+                        <h2>프로필 이미지 변경</h2>
+
+                        <form action="profileImg" method="POST" name="profileImg-form" 
+                              enctype="multipart/form-data" onsubmit="return profileValidate()">
+                            <div class="info_modal_img_area">
+                                <c:if test="${empty loginMember.profileImage}">
+                                    <img src="${contextPath}/resources/img/profileImg/defaultUser.png" alt="프로필 이미지" id="info_profile_img">
+                                </c:if> 
+                               
+                                <c:if test="${!empty loginMember.profileImage}">
+                                    <img src="${contextPath}/${loginMember.profileImage}" alt="프로필 이미지" id="info_profile_img">
+                                </c:if> 
+
+                                <div class="info_modal_img_change_area">
+                                    <label for="input-image"><i class="fa-solid fa-camera"></i></label>
+                                    <input type="file" name="profileImage" id="input-image" accept="image/*">
+                                </div>
+                              </div>
+                              
+                              
+                              <div class="info_modal_btn_area">
+                                <button type="submit">저장</button>
+                                <button  type="button" id="info_img_delete_btn">삭제</button>
+                              </div>
+
+                             <!-- 이미지 삭제 버튼이 눌러짐을 기록 --> <!-- 이미지 삭제 버튼이 눌러짐을 기록 -->
+                             <input type="hidden" name="info_img_delete" id="info_img_delete" value="0">
+                        </form>
+                    </div><!-- modal content 끝 -->
+                </div><!-- modal 끝 -->
+
+                <form action="" name="info-form">
+                    <label for="nickName">닉네임</label>
+                    <div>
+                        <input type="text" id="nickName" value="${loginMember.memberNick}"><br>
+                    </div>
+                    <span id="infoChange_nickMsg">닉네임 안내</span><br>
+
+
+                    <label for="tel">전화번호</label>
+                    <div>
+                        <input type="number" id="tel" value="${loginMember.memberTel}">
+                    </div>
+
+                
+                    <label for="birth">생일</label>
+                    <div>  
+                        <input type="number" id="birth" value="${loginMember.memberBirth}">
+                    </div>
+
+                    <c:set var="addr" value="${fn:split(loginMember.memberAddress, ',,')}"/>
+                    <label for="addr">주소</label>
+                    <div class="addr-area">
+                        <input type="text" id="postInput" value="${addr[0]}">
+                        <button id="postBtn">우편번호</button>
+                    </div>
+                    <div class="addr-area">
+                        <input type="text"  value="${addr[1]}">
+                    </div>
+                    <div class="addr-area">
+                        <input type="text"  value="${addr[2]}">
+                    </div>
+
+                    <button id="saveBtn">변경하기</button>
+                </form>
+            </section>
     </main>
 
 
     <jsp:include page ="/WEB-INF/views/common/footer.jsp"/>
     
 
-
-    <script src="resources/js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="${contextPath}/resources/js/main.js"></script>
+    <script src="${contextPath}/resources/js/infoChange.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 </html>

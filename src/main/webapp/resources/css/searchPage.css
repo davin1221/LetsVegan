@@ -1,5 +1,5 @@
 /* 검색 */
-.searchPage_map_area{
+.searchPage_map_area {
     flex-basis: 10%;
     display: flex;
     width: 100%;
@@ -7,7 +7,7 @@
 }
 
 
-.searchPage_list_container{
+.searchPage_list_container {
     width: 40%;
     height: 100%;
     background-color: #f7f8f2;
@@ -16,7 +16,7 @@
     flex-direction: column;
 }
 
-.searchPage_searchArea{
+.searchPage_searchArea {
     display: flex;
     flex-direction: row;
     flex-direction: row;
@@ -25,31 +25,32 @@
     margin-bottom: 10px;
 }
 
-.searchPage_searchArea label{
+.searchPage_searchArea label {
     font-weight: bold;
     color: #4c604d;
     padding: 0px 5px 5px 5px;
 }
 
-.searchPage_searchArea> div:nth-child(1){
+.searchPage_searchArea>div:nth-child(1) {
     width: 40%;
 }
 
-.searchPage_searchArea> div:nth-child(2){
+.searchPage_searchArea>div:nth-child(2) {
     width: 55%;
 }
 
-.searchPage_searchArea> div:nth-child(3){
+.searchPage_searchArea>div:nth-child(3) {
     width: 5%;
     display: flex;
     align-items: end;
-    justify-content: end;
+    justify-content: space-between;
+    flex-direction: column;
     margin-bottom: 5px;
-
-
+    padding: 3px 0px;
 }
 
-.searchPage_searchArea button{
+
+.searchPage_searchArea button {
     border: 2px solid #bbc7aa;
     background-color: transparent;
     border-radius: 5px;
@@ -57,7 +58,7 @@
     margin-bottom: 5px;
 }
 
-.fa-arrow-rotate-left{
+.searchPage_searchArea>div:nth-child(3) i {
     padding: 5px;
     color: #7c8b66;
     font-size: 20px;
@@ -65,62 +66,62 @@
     transition: transform 0.3s ease-in-out
 }
 
-.fa-arrow-rotate-left:hover{
+.searchPage_searchArea>div:nth-child(3) i:hover {
     transform: scale(1.1) rotate(-70deg);
 }
 
 
 
 /* 리스트 */
-.searchPage_res_item_wrap{
+.searchPage_res_item_wrap {
     flex-basis: 90%;
     overflow: auto;
 }
 
 
-.searchPage_res_item{
+.searchPage_res_item {
     /* display: flex; */
     align-items: center;
     background-color: white;
     border-radius: 10px;
 }
 
-.searchPage_res_item img{
+.searchPage_res_item img {
     flex-basis: 20%;
     border-radius: 10px;
     margin-right: 10px;
 }
 
-.searchPage_res_item_info{
+.searchPage_res_item_info {
     display: flex;
     flex-direction: column;
     flex-basis: 80%;
     margin-right: 10px;
 }
 
-.searchPage_res_item_info > span:nth-child(1){
+.searchPage_res_item_info>span:nth-child(1) {
     color: gray;
 }
 
-.searchPage_res_item_info > span:nth-child(2){
+.searchPage_res_item_info>span:nth-child(2) {
     color: #4c604d;
     font-size: 20px;
     font-weight: 400;
 }
 
 
-.searchPage_res_item_info > span:nth-child(3){
+.searchPage_res_item_info>span:nth-child(3) {
     color: #7c8b66;
 }
 
-.searchPage_res_item_info > span:nth-child(4){
+.searchPage_res_item_info>span:nth-child(4) {
     color: #8aa088;
     text-align: end;
     margin-right: 10px;
     font-size: 30px;
 }
 
-.searchPage_res_item_bottom{
+.searchPage_res_item_bottom {
     border-bottom: 1px solid gray;
     height: 10px;
     width: 100%;
@@ -131,28 +132,93 @@
 
 /* 지도 */
 
-.searchPage_map_container{
+.searchPage_map_container {
     width: 60%;
     height: 100%;
 }
 
 
-@media screen and (max-width:48rem){
-    .searchPage_map_area{
+@media screen and (max-width:48rem) {
+    .searchPage_map_area {
         display: flex;
         flex-direction: column;
     }
 
-    .searchPage_list_container{
+    .searchPage_list_container {
         width: 100%;
         height: 40%
     }
 
-    .searchPage_map_container{
+    .searchPage_map_container {
         width: 100%;
         height: 60%;
     }
 }
 
+.marker-content {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    height: 100px;
+  }
+  
+.marker-image {
+flex-basis: 33.33%;
+text-align: center;
+}
 
+.marker-image img {
+border-radius: 50%;
+width: 60px;
+height: 60px;
+}
 
+.marker-info {
+flex-basis: 66.67%;
+padding-left: 10px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.marker-name {
+font-weight: bold;
+}
+
+.marker-category,
+.marker-sns {
+margin-top: 5px;
+}
+
+/* CSS */
+.button-35 {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+    box-sizing: border-box;
+    color: #4c604d;
+    cursor: pointer;
+    display: inline-flex;
+    flex: 1 1 auto;
+    font-family: Inter,sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 1;
+    margin: 0;
+    outline: none;
+    padding: 1rem 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s,-webkit-box-shadow .2s;
+    white-space: nowrap;
+    border: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-35:hover {
+    box-shadow: #558b2f 0 0 0 3px, transparent 0 0 0 0;
+  }

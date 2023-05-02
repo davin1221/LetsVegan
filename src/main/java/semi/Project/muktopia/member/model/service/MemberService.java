@@ -3,6 +3,7 @@ package semi.Project.muktopia.member.model.service;
 
 import static semi.Project.muktopia.common.JDBCTemplate.*;
 
+
 import java.sql.Connection;
 import java.util.List;
 
@@ -133,4 +134,27 @@ public class MemberService {
 		}
 		return rest;
 	}
+
+	
+	
+	
+	/** 프로필 이미지 변경 
+	 * @param memberNo
+	 * @param profileImage
+	 * @return
+	 * @throws Exception 
+	 */
+	public int updateProfileImage(int memberNo, String profileImage) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.updateProfileImage(conn, memberNo, profileImage);
+	
+		
+		// 트랜잭션 
+		if(result > 0) commit(conn);
+		else 		   rollback(conn);
+		
+		close(conn);		
+	
 }
