@@ -37,7 +37,7 @@ public class WishListLoadServlet extends HttpServlet {
 			
 			new Gson().toJson(wishList, resp.getWriter());
 			System.out.println("서블릿");
-			System.out.println("화면 로드" + wishList);
+//			System.out.println("화면 로드" + wishList);
 			
 		}catch(Exception e){
 			e.printStackTrace();
